@@ -143,21 +143,38 @@ func (list *ArrayList) Size() int {
 
 func main() {
 	var o_1_time [15]float64
+	fmt.Println("Tempo para O(n):")
 	for i := 1; i < 15; i++ {
-		tam := i * 1000
+		tam := i * 10000
 		a := new(ArrayList)
 		a.Init(tam)
 		start := time.Now()
 		for j := 0; j < tam; j++ {
-			a.Add(j)
+			a.AddPos(j, 0)
 		}
 		stop_count := time.Since(start)
 		var totaltime float64
 		totaltime = float64(stop_count)
 		o_1_time[i] = totaltime
+		fmt.Println(stop_count)
+	}
+	fmt.Println("Tempo para O(1):")
+	for i := 1; i < 15; i++ {
+		tam := i * 10000
+		a := new(ArrayList)
+		a.Init(tam)
+		start := time.Now()
+		for j := 0; j < tam; j++ {
+			a.AddPos(j, 0)
+		}
+		stop_count := time.Since(start)
+		var totaltime float64
+		totaltime = float64(stop_count)
+		o_1_time[i] = totaltime
+		fmt.Println(stop_count)
 	}
 
-	fmt.Println(o_1_time)
+	//fmt.Println(o_1_time)
 	/**
 	a := new(ArrayList)
 	a.Init(1000)
