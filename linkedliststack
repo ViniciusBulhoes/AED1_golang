@@ -1,0 +1,61 @@
+package main
+
+import "fmt"
+
+type Node struct {
+	v    int
+	next *Node
+}
+
+type LinkedListStack struct {
+	top  *Node
+	size int
+}
+
+func (linkedliststack *LinkedListStack) Push(value int) {
+	newNode := Node{value, nil}
+	if linkedliststack.size == 0 {
+		linkedliststack.top = &newNode
+	} else {
+		newNode.next = linkedliststack.top
+		linkedliststack.top = &newNode
+	}
+	linkedliststack.size++
+}
+
+func (linkedliststack *LinkedListStack) Pop() {
+	linkedliststack.top = linkedliststack.top.next
+	linkedliststack.size--
+}
+
+func (linkedliststack *LinkedListStack) Top() int {
+	return linkedliststack.top.v
+}
+
+func (linkedliststack *LinkedListStack) Size() int {
+	return linkedliststack.size
+}
+
+func (linkedliststack *LinkedListStack) Print() {
+	auxNode := linkedliststack.top
+	fmt.Print("[")
+	for i := 0; i < linkedliststack.size; i++ {
+		fmt.Print(auxNode.v, ", ")
+		auxNode = auxNode.next
+	}
+	fmt.Print("]\n")
+}
+
+func main() {
+	newStack := LinkedListStack{nil, 0}
+	fmt.Println(newStack.Size())
+	newStack.Push(8)
+	newStack.Print()
+	newStack.Push(5)
+	newStack.Push(10)
+	newStack.Print()
+	newStack.Pop()
+	newStack.Print()
+	fmt.Println(newStack.Top())
+	fmt.Println(newStack.Size())
+}
