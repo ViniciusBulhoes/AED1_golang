@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func binary_search (v[] int, e int) int{
+	ini, fim := 0, v.len()-1
+	for ini <= fim{
+		mid := (fim+ini)/2
+		if e == v[mid]{
+			return mid
+		}else if e < v[mid]{
+			fim = mid-1
+		}else{
+			ini = mid+1
+		}
+	}
+	return -1
+}
